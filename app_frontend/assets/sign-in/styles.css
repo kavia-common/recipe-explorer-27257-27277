@@ -1,0 +1,377 @@
+:root {
+  /* Ocean Professional Design Tokens */
+  --color-primary: #2563EB;     /* blue-600 */
+  --color-primary-600: #2563EB;
+  --color-primary-500-10: rgba(59,130,246,0.10); /* Tailwind blue-500/10 approximation */
+  --color-secondary: #F59E0B;   /* amber-500/600 theme secondary */
+  --color-amber: #F59E0B;
+  --color-success: #F59E0B;     /* per instruction mapping */
+  --color-error: #EF4444;
+
+  --bg: #f9fafb;                /* background */
+  --surface: #ffffff;           /* surface */
+  --text: #111827;              /* gray-900 */
+  --text-muted: #6B7280;        /* gray-500 */
+  --line: #d9d9d9;              /* from figma style_28/30 */
+
+  --radius-10: 10px;
+  --radius-30: 30px;
+  --radius-100: 100px;
+
+  --shadow-fig-0: 0 0 5px 3px #6969691a; /* shadow_0 with alpha */
+  --shadow-md: 0 10px 30px rgba(17, 24, 39, 0.08);
+
+  --font-sans: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+  --font-ui: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+
+  /* Typography precise from Figma */
+  --hello-size: 30px;     /* typo_60 */
+  --hello-line: 45px;
+  --welcome-size: 20px;   /* typo_61 */
+  --welcome-line: 30px;
+  --field-label-size: 14px; /* typo_66 */
+  --field-label-line: 21px;
+  --placeholder-size: 11px; /* typo_65 */
+  --placeholder-line: 16.5px;
+  --btn-size: 16px;         /* typo_58 */
+  --btn-line: 24px;
+  --small-size: 11px;       /* typo_63 etc */
+  --small-line: 16.5px;
+
+  --spacing-0: 0;
+  --spacing-4: 4px;
+  --spacing-6: 6px;
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-17: 17px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-34: 34px;
+  --spacing-40: 40px;
+  --spacing-44: 44px;
+  --spacing-55: 55px;
+  --spacing-60: 60px;
+
+  /* Responsive container width (375px design baseline) */
+  --container-max: 375px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(120% 120% at 10% 0%, var(--color-primary-500-10) 0%, #F9FAFB 60%) no-repeat,
+    var(--bg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Screen container mirrors Figma 375x812 but responsive centered */
+.screen.sign-in {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto auto auto auto auto auto 1fr auto auto;
+  justify-content: center;
+  align-content: start;
+  padding: env(safe-area-inset-top) var(--spacing-16) env(safe-area-inset-bottom);
+}
+
+/* Internal content width constrained to design width */
+.screen.sign-in > * {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Status bar placeholder (height 44 like figma) */
+.status-bar {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: var(--spacing-16);
+  color: #303030;
+  font-family: "SF Pro Display", var(--font-ui);
+  font-size: 15px;
+  line-height: 17.9px;
+}
+
+.title-group {
+  margin-top: var(--spacing-20);
+  padding-left: var(--spacing-16);
+  padding-right: var(--spacing-16);
+}
+
+.hello {
+  margin: 0;
+  font-size: var(--hello-size);
+  line-height: var(--hello-line);
+  font-weight: 600;
+  color: #000000; /* typo_60 color */
+}
+
+.welcome {
+  margin: 0;
+  margin-top: var(--spacing-6);
+  font-size: var(--welcome-size);
+  line-height: var(--welcome-line);
+  color: #121212; /* typo_61 color */
+}
+
+/* Field groups reflect 315 width from Figma, centered */
+.field-group {
+  width: 100%;
+  max-width: 315px;
+  padding-left: var(--spacing-16);
+  padding-right: var(--spacing-16);
+  margin-top: var(--spacing-16);
+}
+
+.field-label {
+  display: block;
+  font-size: var(--field-label-size);
+  line-height: var(--field-label-line);
+  font-weight: 400;
+  color: #121212;
+  margin-bottom: var(--spacing-8);
+}
+
+.input-wrap {
+  height: 55px; /* per figma Rectangle 6 */
+  border: 1.5px solid var(--line); /* style_30 */
+  border-radius: var(--radius-10);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-20);
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+
+.input-wrap:has(input:focus) {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.input-wrap input {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: none;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--text);
+  background: transparent;
+  font-family: var(--font-sans);
+}
+
+.input-wrap input::placeholder {
+  font-size: var(--placeholder-size);
+  line-height: var(--placeholder-line);
+  color: #d9d9d9; /* typo_65 color */
+}
+
+/* Forgot password aligned near inputs (Figma y ~8 relative bottom of fields) */
+.forgot {
+  padding-left: var(--spacing-16);
+  padding-right: var(--spacing-16);
+  max-width: 315px;
+  margin: var(--spacing-12) auto 0;
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+}
+
+.link-forgot {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.link-forgot:focus-visible,
+.link-forgot:hover {
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Primary CTA button (315x60) style_11 adapted to Ocean palette */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-10);
+  border: 0;
+  border-radius: var(--radius-10);
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  width: 315px;
+  height: 60px;
+  margin: var(--spacing-20) auto 0;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.96), rgba(37, 99, 235, 0.88));
+  box-shadow: var(--shadow-md);
+  transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 14px 40px rgba(37, 99, 235, 0.22);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37,99,235,.2);
+}
+
+.btn-label {
+  font-size: var(--btn-size);
+  line-height: var(--btn-line);
+  font-weight: 600;
+}
+
+.btn-icon {
+  display: inline-flex;
+  color: #ffffff;
+}
+
+/* Or line group: two 50px lines and centered text per Figma */
+.or-line {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--spacing-12);
+  margin: var(--spacing-20) auto 0;
+  max-width: 315px;
+  padding-left: var(--spacing-16);
+  padding-right: var(--spacing-16);
+}
+
+.or-line::before,
+.or-line::after {
+  content: "";
+  height: 1px;
+  background: var(--line); /* style_28 */
+}
+
+.or-text {
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  color: #d9d9d9; /* typo_64 */
+}
+
+/* Social buttons group */
+.social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-16);
+  margin-top: var(--spacing-16);
+}
+
+.social-btn {
+  width: 44px;
+  height: 44px;
+  background: var(--surface);
+  border: 0;
+  border-radius: var(--radius-10); /* style_126 radius 10 */
+  box-shadow: var(--shadow-fig-0); /* style_126 shadow_0 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow .2s ease, transform .06s ease;
+}
+
+.social-btn:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.social-btn:active {
+  transform: translateY(1px);
+}
+
+.social-icon img {
+  display: block;
+}
+
+/* Home indicator pill (135x5, radius 100, color #121212) */
+.home-indicator {
+  width: 135px;
+  height: 5px;
+  background: #121212;
+  border-radius: var(--radius-100);
+  opacity: 0.95;
+  margin: var(--spacing-24) auto var(--spacing-8);
+}
+
+/* Footer question */
+.no-account {
+  text-align: center;
+  font-size: var(--small-size);
+  line-height: var(--small-line);
+  margin: var(--spacing-8) auto var(--spacing-20);
+  color: #000;
+}
+
+.link-signup {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.link-signup:hover,
+.link-signup:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+/* Accessibility helpers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
+}
+
+/* Responsive tuning */
+@media (max-width: 420px) {
+  .btn-primary { width: calc(100% - 32px); }
+  .field-group { max-width: none; }
+  .or-line { max-width: none; }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: radial-gradient(120% 120% at 10% 0%, rgba(59,130,246,0.18) 0%, #0b1220 60%), #0b1220;
+    color: #e5e7eb;
+  }
+  .input-wrap {
+    background: #0f172a;
+    border-color: #334155;
+  }
+  .input-wrap input { color: #e5e7eb; }
+  .input-wrap input::placeholder { color: #64748b; }
+  .or-text { color: #64748b; }
+  .social-btn { background: #0f172a; }
+  .home-indicator { background: #e5e7eb; opacity: .35; }
+  .no-account { color: #e5e7eb; }
+}
